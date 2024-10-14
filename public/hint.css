@@ -1,0 +1,119 @@
+.password-hint {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  padding: 8px 16px 16px;
+  width: 520px;
+  color: #333;
+  font-size: 14px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999999;
+}
+
+.password-hint .password-hint-title {
+  margin-bottom: 8px;
+  display: flex;
+  padding: 8px 0;
+  color: #999;
+}
+
+.password-hint .password-hint-title .hint-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* 列表展示 */
+.password-hint-list {
+  margin-bottom: 16px;
+}
+
+.password-hint-item {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.password-hint-item .hint-account {
+  font-size: 14px;
+  color: #333;
+}
+
+.password-hint-item .hint-content {
+  margin-left: 8px;
+  color: #999;
+  font-size: 14px;
+}
+
+.password-hint-item #removePasswordHint {
+  margin-left: auto;
+  color: #999;
+  cursor: pointer;
+}
+
+/* 提交表单 */
+.password-hint-form {
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.password-hint-form input[type="text"] {
+  flex: 1;
+  margin-right: 8px;
+  padding: 2px 4px;
+  height: 28px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.password-hint-form button {
+  padding: 2px 8px;
+  height: 28px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #eee;
+  outline: none;
+  border-radius: 4px;
+}
+
+.password-hint-form button:disabled {
+  color: #999;
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+/* 关闭按钮 */
+.hint-icon-close {
+  margin-left: auto;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  color: #999;
+  cursor: pointer;
+}
+
+.hint-icon-close::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 1px;
+  background-color: currentColor;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.hint-icon-close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 1px;
+  background-color: currentColor;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}

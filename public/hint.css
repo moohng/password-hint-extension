@@ -1,99 +1,140 @@
-.password-hint {
+.hint {
+  --primary-color: #0AA679;
+
   position: fixed;
   top: 24px;
   right: 24px;
-  padding: 8px 16px 16px;
-  width: 520px;
+  width: 320px;
   color: #333;
   font-size: 14px;
   background-color: #fff;
-  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 999999;
 }
 
-.password-hint .password-hint-title {
-  margin-bottom: 8px;
-  display: flex;
-  padding: 8px 0;
-  color: #999;
+.hint * {
+  color: inherit;
+  font-size: inherit;
+  background: initial;
 }
 
-.password-hint .password-hint-title .hint-name {
+.hint .hint-header {
+  display: flex;
+  padding: 12px 16px 20px;
+}
+
+.hint .hint-header .hint-name {
+  color: var(--primary-color);;
   font-size: 16px;
   font-weight: 500;
 }
 
+.hint .hint-body {
+  margin: 0 16px 16px;
+}
+
 /* 列表展示 */
-.password-hint-list {
-  margin-bottom: 16px;
+.hint-list {
+  margin-bottom: 12px;
+  background-color: #f6ffed;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 0 var(--primary-color);
 }
 
-.password-hint-item {
-  padding: 8px 0;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #eee;
+.hint-item {
+  padding: 8px 16px;
 }
 
-.password-hint-item .hint-account {
+.hint-item:hover {
+  background-color: #dbe5d2;
+}
+
+.hint-item .hint-account {
   font-size: 14px;
-  color: #333;
 }
 
-.password-hint-item .hint-content {
-  margin-left: 8px;
+.hint-item .hint-content {
   color: #999;
   font-size: 14px;
 }
 
-.password-hint-item #removePasswordHint {
-  margin-left: auto;
+.hint-item #removePasswordHint {
+  float: right;
   color: #999;
   cursor: pointer;
 }
 
 /* 提交表单 */
-.password-hint-form {
-  margin-bottom: 8px;
-  display: flex;
+.hint-form {
+  padding: 8px 16px;
+  background-color: #f6ffed;
+  border-radius: 4px;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 0 var(--primary-color);
 }
 
-.password-hint-form input[type="text"] {
-  flex: 1;
+.hint-form input[type="text"] {
   margin-right: 8px;
   padding: 2px 4px;
+  width: 100%;
   height: 28px;
-  font-size: 14px;
-  color: #333;
   outline: none;
-  border: 1px solid #eee;
-  border-radius: 4px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--primary-color);
+  border-radius: 0;
 }
 
-.password-hint-form button {
+.hint-form input[type="text"] + input[type="text"] {
+  margin-top: 8px;
+}
+
+.hint-form input::placeholder {
+  color: #333;
+}
+
+.hint-form button {
+  margin-top: 8px;
   padding: 2px 8px;
   height: 28px;
-  font-size: 14px;
-  color: #333;
-  border: 1px solid #eee;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
   outline: none;
   border-radius: 4px;
 }
 
-.password-hint-form button:disabled {
-  color: #999;
-  background-color: #eee;
+.hint-form button:hover {
+  position: relative;
+  background-color: var(--primary-color);
+}
+.hint-form button:not(:disabled):hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: inherit;
+}
+
+.hint-form button:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 /* 关闭按钮 */
 .hint-icon-close {
+  display: inline-block;
   margin-left: auto;
   position: relative;
-  width: 24px;
-  height: 24px;
-  color: #999;
+  font-size: 24px;
+  width: 1em;
+  height: 1em;
+  color: currentColor;
   cursor: pointer;
 }
 
@@ -102,8 +143,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 16px;
-  height: 1px;
+  width: 0.8em;
+  height: 0.05em;
   background-color: currentColor;
   transform: translate(-50%, -50%) rotate(45deg);
 }
@@ -112,8 +153,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 16px;
-  height: 1px;
+  width: 0.8em;
+  height: 0.05em;
   background-color: currentColor;
   transform: translate(-50%, -50%) rotate(-45deg);
 }

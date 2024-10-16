@@ -10,7 +10,7 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener(async (info: chrome.contextMenus.OnClickData, tab?: chrome.tabs.Tab) => {
   if (info.menuItemId === 'passwordHintMenu') {
     try {
-      await chrome.tabs.sendMessage(tab!.id!, { type: 'open-password-hint-dialog', tab, info });
+      await chrome.tabs.sendMessage(tab!.id!, { type: 'open-hint-dialog', tab, info });
     } catch (error) {
       // 动态注入脚本
       await chrome.scripting.executeScript({
@@ -21,7 +21,7 @@ chrome.contextMenus.onClicked.addListener(async (info: chrome.contextMenus.OnCli
         target: { tabId: tab!.id! },
         files: ['hint.css'],
       });
-      chrome.tabs.sendMessage(tab!.id!, { type: 'open-password-hint-dialog', tab, info });
+      chrome.tabs.sendMessage(tab!.id!, { type: 'open-hint-dialog', tab, info });
     }
   }
 });

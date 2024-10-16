@@ -11,20 +11,23 @@ const HINT_MAX_LENGTH = 15;
 function renderHintItem(container: HTMLElement, hints?: { hint: string; account: string }[]) {
   const hintList =
     hints?.map((item, index) => {
-      return `<div class="password-hint-item">
+      return `<div class="hint-item">
+      <div id="removePasswordHint" class="hint-icon-close" style="margin-top: 14px; font-size: 16px" data-index="${index}"></div>
       <div class="hint-account">${item.account}</div>
       <div class="hint-content">${item.hint}</div>
-      <div id="removePasswordHint" data-index="${index}">删除</div>
     </div>`;
     }) || [];
   const tpl = hintList.join('');
-  container.querySelector('.password-hint-list')!.innerHTML = tpl;
+  container.querySelector('.hint-list')!.innerHTML = tpl;
 
   const hintsLength = hints?.length || 0;
+
+  container.querySelector<HTMLElement>('.hint-count')!.textContent = `(${hintsLength})`;
+
   if (hintsLength >= GROUP_MAX_LENGTH) {
-    container.querySelector<HTMLElement>('.password-hint-form')!.style.display = 'none';
+    container.querySelector<HTMLElement>('.hint-form')!.style.display = 'none';
   } else {
-    container.querySelector<HTMLElement>('.password-hint-form')!.style.display = '';
+    container.querySelector<HTMLElement>('.hint-form')!.style.display = '';
   }
 }
 
@@ -34,7 +37,7 @@ function initEvent(
   passwordHints: { [key: string]: { hint: string; account: string }[] }
 ) {
   // 删除
-  const passwordHintList = container.querySelector('.password-hint-list');
+  const passwordHintList = container.querySelector('.hint-list');
   passwordHintList!.addEventListener('click', (event) => {
     if (event.target instanceof HTMLElement && event.target.id === 'removePasswordHint') {
       passwordHints[hostname].splice(parseInt(event.target.dataset.index!), 1);
@@ -82,19 +85,19 @@ function initEvent(
 }
 
 function createPasswordHintManager(hostname: string, hints?: { hint: string; account: string }[]) {
-  const hintsLength = hints?.length || 0;
-
   const htmlTemplate = `
-    <div class="password-hint">
-      <div class="password-hint-title">
-        <span class="hint-name">${hostname}（${hintsLength}）</span>
+    <div class="hint">
+      <div class="hint-header">
+        <span class="hint-name">${hostname}<span class="hint-count"></span></span>
         <span id="closePasswordHintManager" class="hint-icon-close"></span>
       </div>
-      <div class="password-hint-list"></div>
-      <div class="password-hint-form">
-        <input type="text" id="account" placeholder="账号分组" maxlength="${ACCOUNT_MAX_LENGTH}">
-        <input type="text" id="hint" placeholder="密码提示信息（请勿输入密码）" maxlength="${HINT_MAX_LENGTH}">
-        <button type="submit" id="addPasswordHint" disabled>添加</button>
+      <div class="hint-body">
+        <div class="hint-list"></div>
+        <div class="hint-form">
+          <input type="text" id="account" placeholder="账号分组" maxlength="${ACCOUNT_MAX_LENGTH}">
+          <input type="text" id="hint" placeholder="密码提示信息（请勿输入密码）" maxlength="${HINT_MAX_LENGTH}">
+          <button type="submit" id="addPasswordHint" disabled>添加</button>
+        </div>
       </div>
     </div>
   `;
@@ -134,7 +137,7 @@ async function openPasswordHintManager({ hostname }: { hostname: string }) {
 chrome.runtime.onMessage.addListener(async (message) => {
   console.log('message received', message);
   // 打开密码提示对话框
-  if (message?.type === 'open-password-hint-dialog') {
+  if (message?.type === 'open-hint-dialog') {
     const url = new URL(message.info.pageUrl);
     openPasswordHintManager({ hostname: url.host });
   }

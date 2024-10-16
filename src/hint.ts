@@ -12,13 +12,19 @@ function renderHintItem(container: HTMLElement, hints?: { hint: string; account:
   const hintList =
     hints?.map((item, index) => {
       return `<div class="hint-item">
-      <div id="removePasswordHint" class="hint-icon-close" style="margin-top: 14px; font-size: 16px" data-index="${index}"></div>
+      <div id="removePasswordHint" class="hint-icon-remove" style="margin-top: 12px; font-size: 18px" data-index="${index}"></div>
       <div class="hint-account">${item.account}</div>
       <div class="hint-content">${item.hint}</div>
     </div>`;
     }) || [];
   const tpl = hintList.join('');
-  container.querySelector('.hint-list')!.innerHTML = tpl;
+  const tplContainer = container.querySelector<HTMLElement>('.hint-list');
+  tplContainer!.innerHTML = tpl;
+  if (!tpl) {
+    tplContainer!.style.display = 'none';
+  } else {
+    tplContainer!.style.display = '';
+  }
 
   const hintsLength = hints?.length || 0;
 
@@ -60,6 +66,14 @@ function initEvent(
         addPasswordHintButton!.disabled = true;
       }
     });
+    input!.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        if (accountInput!.value && hintInput!.value) {
+          addPasswordHintButton!.click();
+          accountInput!.focus();
+        }
+      }
+    });
   });
 
   // 添加
@@ -95,9 +109,14 @@ function createPasswordHintManager(hostname: string, hints?: { hint: string; acc
         <div class="hint-list"></div>
         <div class="hint-form">
           <input type="text" id="account" placeholder="账号分组" maxlength="${ACCOUNT_MAX_LENGTH}">
-          <input type="text" id="hint" placeholder="密码提示信息（请勿输入密码）" maxlength="${HINT_MAX_LENGTH}">
-          <button type="submit" id="addPasswordHint" disabled>添加</button>
+          <input type="text" id="hint" placeholder="密码提示（请勿输入密码）" maxlength="${HINT_MAX_LENGTH}">
+          <a type="submit" id="addPasswordHint" disabled>
+            <span class="hint-icon-add" style="font-size: 18px"></span>
+          </a>
         </div>
+      </div>
+      <div class="hint-footer">
+        <div class="hint-text">插件仅用于辅助记忆，切勿泄露真实密码。</div>
       </div>
     </div>
   `;
@@ -127,7 +146,7 @@ async function openPasswordHintManager({ hostname }: { hostname: string }) {
   if (!container) {
     container = createPasswordHintManager(hostname, passwordHints[hostname]);
     initEvent(container!, hostname, passwordHints);
-    document.body.appendChild(container);
+    document.documentElement.appendChild(container);
   } else {
     renderHintItem(container, passwordHints[hostname]);
     container.style.display = '';

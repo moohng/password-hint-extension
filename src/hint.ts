@@ -11,7 +11,7 @@ const HINT_MAX_LENGTH = 15;
 function renderHintItem(container: HTMLElement, hints?: { hint: string; account: string }[]) {
   const hintList =
     hints?.map((item, index) => {
-      return `<div class="hint-item">
+      return `<div class="hint-item bottom-line">
       <div id="removePasswordHint" class="hint-icon-remove" style="margin-top: 12px; font-size: 18px" data-index="${index}"></div>
       <div class="hint-account">${item.account}</div>
       <div class="hint-content">${item.hint}</div>
@@ -109,7 +109,7 @@ function createPasswordHintManager(hostname: string, hints?: { hint: string; acc
       <div class="hint-body">
         <div class="hint-list"></div>
         <div class="hint-form">
-        <span id="addPasswordHint" class="hint-icon-add disabled" style="margin-top: 12px; font-size: 18px"></span>
+          <span id="addPasswordHint" class="hint-icon-add disabled" style="margin-top: 12px; font-size: 18px"></span>
           <input type="text" id="account" placeholder="账号分组" maxlength="${ACCOUNT_MAX_LENGTH}">
           <input type="text" id="hint" placeholder="密码提示（请勿输入密码）" maxlength="${HINT_MAX_LENGTH}">
         </div>

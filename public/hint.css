@@ -21,34 +21,27 @@
 }
 
 .hint .hint-header {
+  padding: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px 16px;
 }
 
 .hint .hint-header .hint-name {
-  color: var(--primary-color);;
-  font-size: 16px;
-  font-weight: 500;
+  padding-left: 24px;
+  color: var(--primary-color);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128' fill='none'%3E%3Cpath stroke='%230AA679' stroke-width='10' d='M99 46.727c0-22.091-15.67-40-35-40s-35 17.909-35 40'/%3E%3Cpath fill='%230AA679' fill-rule='evenodd' d='M9 54.227a7.5 7.5 0 0 1 7.5-7.5h95a7.5 7.5 0 0 1 7.5 7.5v65a7.5 7.5 0 0 1-7.5 7.5h-95a7.5 7.5 0 0 1-7.5-7.5zm55 22.5a5 5 0 0 1 5 5v27.5a5 5 0 1 1-10 0v-27.5a5 5 0 0 1 5-5m1.103-18.016a5.625 5.625 0 0 0-2.206 11.032 5.625 5.625 0 0 0 2.206-11.031z' clip-rule='evenodd'/%3E%3C/svg%3E") no-repeat center left / 18px auto;
 }
 
 .hint .hint-body {
-  margin: 0 16px 16px;
+  margin: 0 12px 12px;
+  padding: 0 12px;
   background-color: #fff;
-  border-radius: 8px;
-  /* border: 1px solid var(--primary-color); */
 }
 
 /* 列表展示 */
-.hint-list {
-  /* border-radius: 4px; */
-  /* overflow: hidden; */
-  /* box-shadow: 0 4px 0 var(--primary-color); */
-}
-
 .hint-item {
-  padding: 8px 12px;
+  padding: 8px 0;
 }
 
 .hint-item .hint-account {
@@ -73,22 +66,16 @@
 /* 提交表单 */
 .hint-form {
   position: relative;
-  padding: 8px 12px;
-  /* background-color: #f6ffed; */
-  /* border-radius: 4px; */
-  /* border: 1px solid var(--primary-color);
-  box-shadow: 0 4px 0 var(--primary-color); */
+  padding: 8px 0;
 }
 
 .hint-form input[type="text"] {
-  /* padding: 2px 4px; */
   width: calc(100% - 24px);
   height: 21px;
   font-weight: 600;
   outline: none;
   background-color: transparent;
   border: none;
-  /* border-bottom: 1px solid var(--primary-color); */
   border-radius: 0;
 }
 
@@ -106,20 +93,6 @@
   float: right;
   color: #666;
 }
-
-/* #addPasswordHint:hover {
-  background-color: var(--primary-color);
-} */
-/* #addPasswordHint:not(:disabled):hover::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: inherit;
-} */
 
 /* 关闭按钮 */
 .hint-icon-close,
@@ -170,8 +143,8 @@
 
 /* 页脚 */
 .hint-footer {
-  margin: 16px 0;
-  padding: 0 16px;
+  margin: 12px 0;
+  padding: 0 12px;
 }
 
 .hint-footer .hint-text {
@@ -182,7 +155,7 @@
 /* 移除图标 */
 .hint-icon-remove,
 .hint-icon-add {
-  border: 0.05em solid currentColor;
+  border: 0.06em solid currentColor;
   border-radius: 50%;
 }
 .hint-icon-remove::before,
@@ -192,9 +165,9 @@
   top: 50%;
   left: 50%;
   width: 0.6em;
-  height: 0.05em;
+  height: 0.06em;
   background-color: currentColor;
-  border-radius: 0.05em;
+  border-radius: 0.06em;
   transform: translate(-50%, -50%);
 }
 
@@ -204,10 +177,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0.05em;
+  width: 0.06em;
   height: 0.6em;
   background-color: currentColor;
-  border-radius: 0.05em;
+  border-radius: 0.06em;
   transform: translate(-50%, -50%);
 }
 
@@ -220,14 +193,14 @@
   content: '';
   display: block;
   position: absolute;
-  left: 50%;
-  width: 0;
+  left: 0;
   bottom: 0;
-  border-bottom: 1px solid var(--primary-color);
-  transform: translateX(-50%);
-  transition: width 0.3s ease-in-out;
+  width: 100%;
+  border-bottom: 1px solid #e8efec;
+  /* transform: translateX(-50%);
+  transition: width 0.3s ease-in-out; */
 }
 
-.bottom-line:hover::before {
+/* .bottom-line:hover::before {
   width: 100%;
-}
+} */

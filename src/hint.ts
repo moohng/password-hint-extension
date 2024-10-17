@@ -103,7 +103,7 @@ function createPasswordHintManager(hostname: string, hints?: { hint: string; acc
   const htmlTemplate = `
     <div class="hint">
       <div class="hint-header">
-        <span class="hint-name">${hostname}<span class="hint-count"></span></span>
+        <span class="hint-name">${hostname?.length > 20 ? hostname.slice(0, 20) + '...' : hostname}<span class="hint-count"></span></span>
         <span id="closePasswordHintManager" class="hint-icon-close"></span>
       </div>
       <div class="hint-body">

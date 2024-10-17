@@ -61,9 +61,9 @@ function initEvent(
   [accountInput, hintInput].forEach((input) => {
     input!.addEventListener('input', () => {
       if (accountInput!.value && hintInput!.value) {
-        addPasswordHintButton!.disabled = false;
+        addPasswordHintButton!.classList.remove('disabled');
       } else {
-        addPasswordHintButton!.disabled = true;
+        addPasswordHintButton!.classList.add('disabled');
       }
     });
     input!.addEventListener('keydown', (e) => {
@@ -78,6 +78,7 @@ function initEvent(
 
   // 添加
   addPasswordHintButton!.addEventListener('click', async () => {
+    if (addPasswordHintButton!.classList.contains('disabled')) return;
     const currentPasswordHint = [
       ...(passwordHints[hostname] || []),
       { account: accountInput!.value, hint: hintInput!.value },
@@ -108,11 +109,9 @@ function createPasswordHintManager(hostname: string, hints?: { hint: string; acc
       <div class="hint-body">
         <div class="hint-list"></div>
         <div class="hint-form">
+        <span id="addPasswordHint" class="hint-icon-add disabled" style="margin-top: 12px; font-size: 18px"></span>
           <input type="text" id="account" placeholder="账号分组" maxlength="${ACCOUNT_MAX_LENGTH}">
           <input type="text" id="hint" placeholder="密码提示（请勿输入密码）" maxlength="${HINT_MAX_LENGTH}">
-          <a type="submit" id="addPasswordHint" disabled>
-            <span class="hint-icon-add" style="font-size: 18px"></span>
-          </a>
         </div>
       </div>
       <div class="hint-footer">

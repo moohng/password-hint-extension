@@ -1,7 +1,7 @@
 {
   "name": "password-hint-extension",
-  "description": "密码提示插件",
-  "version": "0.0.0",
+  "description": "对网站的账号、密码设置提示信息，辅助记忆。",
+  "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
     "dev": "rollup -c rollup.config.js -w",

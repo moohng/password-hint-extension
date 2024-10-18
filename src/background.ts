@@ -2,7 +2,7 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: 'passwordHintMenu',
-    title: '密码提示',
+    title: 'Password Hint - 账号密码辅助记忆',
     contexts: ['all'],
   });
 });

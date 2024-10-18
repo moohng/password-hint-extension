@@ -110,7 +110,7 @@ function createPasswordHintManager(hostname: string, hints?: { hint: string; acc
         <div class="hint-list"></div>
         <div class="hint-form">
           <span id="addPasswordHint" class="hint-icon-add disabled" style="margin-top: 12px; font-size: 18px"></span>
-          <input type="text" id="account" placeholder="账号分组" maxlength="${ACCOUNT_MAX_LENGTH}">
+          <input type="text" id="account" placeholder="添加账号分组" maxlength="${ACCOUNT_MAX_LENGTH}">
           <input type="text" id="hint" placeholder="密码提示（请勿输入密码）" maxlength="${HINT_MAX_LENGTH}">
         </div>
       </div>
